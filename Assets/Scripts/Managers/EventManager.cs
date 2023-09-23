@@ -24,7 +24,11 @@ public static class EventManager
     public static Func<float> GetAnimTime;
 
     public static Action<Customization,int> TextureItemClicked;
+    public static Action DanceStateChanged;
 
+    public static Func<int> GetDanceIndex;
+    public static Func<int,bool> CheckIfItemUsing;
 
+    public static Func<int,int> GetCurrentUsingTextureId;
 
 }

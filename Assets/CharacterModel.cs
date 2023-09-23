@@ -16,6 +16,7 @@ public class CharacterModel : MonoBehaviour
 
     public CustomizationData data;
    
+    
 
     [Button]
     public void SetData()
@@ -36,7 +37,7 @@ public class CharacterModel : MonoBehaviour
         {
             var item = PrefabUtility.InstantiatePrefab(itemData.model, transform) as GameObject;
             item.transform.SetParent(bodyParts.First(x => x.category==itemData.customizationCategory).transform);
-            CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item,itemData.id,true);
+            CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item,itemData.id,false,0);
             if (itemData.customizationCategory!=CustomizationCategories.Accessories)
             {
                 var sc = item.AddComponent<Clothing>();
@@ -56,11 +57,30 @@ public class CharacterModel : MonoBehaviour
 
     private void OnEnable()
     {
+        EventManager.GetCurrentUsingTextureId += GetCurrentUsingTextureId;
+        EventManager.TextureItemClicked += TextureItemClicked;
+        EventManager.CheckIfItemUsing += CheckIfItemUsing;
         EventManager.ItemClicked += ItemClicked;
+    }
+
+    private int GetCurrentUsingTextureId(int id)
+    {
+        return items.First(x => x.id == id).currentTextureIndex;
+    }
+
+    private void TextureItemClicked(Customization itemData, int index)
+    {
+        items.First(x => x.id == itemData.id).currentTextureIndex = index;
+    }
+
+    private bool CheckIfItemUsing(int id)
+    {
+        return items.First(x => x.id == id).isWearing;
     }
 
     private void OnDisable()
     {
+        EventManager.TextureItemClicked -= TextureItemClicked;
         EventManager.ItemClicked -= ItemClicked;
     }
 
@@ -139,6 +159,10 @@ public class CharacterModel : MonoBehaviour
             {
                 {
                     it.itemObject.SetActive(true);
+                    if (it.itemObject.GetComponent<Clothing>())
+                    {
+                        it.itemObject.GetComponent<Clothing>().Dance();
+                    }
                     it.isWearing = true;
                 }
                 return;

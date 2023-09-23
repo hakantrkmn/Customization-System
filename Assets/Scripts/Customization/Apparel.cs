@@ -8,17 +8,17 @@ public abstract class Apparel : MonoBehaviour
     public Customization data;
     public Renderer renderer;
 
-    private void Start()
+     void Start()
     {
         renderer = GetComponentInChildren<Renderer>();
     }
 
-    private void OnEnable()
+     protected virtual void OnEnable()
     {
         EventManager.TextureItemClicked += TextureItemClicked;
     }
 
-    private void OnDisable()
+     protected virtual void OnDisable()
     {
         EventManager.TextureItemClicked -= TextureItemClicked;
     }
@@ -27,7 +27,16 @@ public abstract class Apparel : MonoBehaviour
     {
         if (itemData.id==data.id)
         {
-            renderer.material.SetTexture("_BaseMap",data.textures[id]);
+            if (id==0)
+            {
+                renderer.material.SetTexture("_BaseMap",null);
+
+            }
+            else
+            {
+                renderer.material.SetTexture("_BaseMap",data.textures[id]);
+
+            }
         }
     }
 }

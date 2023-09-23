@@ -6,6 +6,13 @@
     PauseLevel,
     ResetProgressData,
 }
+public enum Dances
+{
+    Idle,
+    Dance_1,
+    Dance_2,
+    
+}
 public enum CustomizationCategories
 {
     FullBody,
