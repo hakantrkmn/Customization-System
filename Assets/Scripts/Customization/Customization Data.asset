@@ -16,99 +16,127 @@ MonoBehaviour:
   - id: 0
     name: Choker
     customizationCategory: 3
+    itemType: 0
     model: {fileID: 2681549413512631073, guid: 5e422e789afa742d688e4aebb8e185d1, type: 3}
-    sprite: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
+    uiSprite: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
     - {fileID: 2800000, guid: 889b15e3db80c4ffcbcdb55cbaf123d1, type: 3}
     - {fileID: 2800000, guid: 77a39e873655d3c4b93d0b7696397b83, type: 3}
+    takeOffCategories: 
   - id: 1
     name: Ripped Pant
     customizationCategory: 2
+    itemType: 0
     model: {fileID: 6498639749659414084, guid: 126a396c1e05c47a387b2a0ef19de97e, type: 3}
-    sprite: {fileID: 21300000, guid: 9c0d6ec706e01ce448aea81584af092b, type: 3}
+    uiSprite: {fileID: 21300000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
     - {fileID: 2800000, guid: 61ca15753468d4b4aa87061f18940adf, type: 3}
     - {fileID: 2800000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
+    takeOffCategories: 0200000000000000
   - id: 2
     name: Necklace
     customizationCategory: 3
+    itemType: 0
     model: {fileID: 8499457467065538753, guid: ea4f000ef919a484db81ca401c4101ba, type: 3}
-    sprite: {fileID: 21300000, guid: 70632ddfe8e71b04b8f90ef7e29a9e98, type: 3}
+    uiSprite: {fileID: 21300000, guid: 3a0c527d7f890d64a9b56b086e6e766a, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
+    takeOffCategories: 
   - id: 3
     name: Skinny Jean
     customizationCategory: 2
+    itemType: 0
     model: {fileID: 2290063844559042297, guid: dee37660dd7674caba08b783d3eec41d, type: 3}
-    sprite: {fileID: 21300000, guid: c887ed2a931c29040bc544cd8c546e9f, type: 3}
+    uiSprite: {fileID: 21300000, guid: 13e7e6fe43a8aa049bcd610bbc1f5ff8, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
+    takeOffCategories: 0200000000000000
   - id: 4
     name: Cross Dress
     customizationCategory: 0
+    itemType: 0
     model: {fileID: 5551121438351852993, guid: 7f9a0c018259148bbb032d517194426a, type: 3}
-    sprite: {fileID: 21300000, guid: 5955491dc8dcecb4a993d9a008cf65a7, type: 3}
+    uiSprite: {fileID: 21300000, guid: a04ecc9d5e12d5d449077414eb86635e, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
+    takeOffCategories: 000000000100000002000000
   - id: 5
     name: Flame Corse
     customizationCategory: 0
+    itemType: 0
     model: {fileID: 4181148313714723648, guid: 4a822cb78957b4bbda6a0a1355459806, type: 3}
-    sprite: {fileID: 21300000, guid: 17035c204825f6340a252046ab6476fd, type: 3}
+    uiSprite: {fileID: 21300000, guid: 5955491dc8dcecb4a993d9a008cf65a7, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
+    takeOffCategories: 000000000100000002000000
   - id: 6
     name: Sleeve Corse
     customizationCategory: 0
+    itemType: 0
     model: {fileID: 8257521292980309714, guid: ada0fecb539c341bd8bae52768730f68, type: 3}
-    sprite: {fileID: 21300000, guid: f8c9467a892580344bb697526dac0d13, type: 3}
+    uiSprite: {fileID: 21300000, guid: 02800fb9cff14da47a04572790384d8b, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
+    takeOffCategories: 000000000200000001000000
   - id: 7
     name: Emily Sock
     customizationCategory: 5
+    itemType: 0
     model: {fileID: 6228137860547088562, guid: 13ee05c56005a400d96a1712e3d9847a, type: 3}
-    sprite: {fileID: 21300000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
+    uiSprite: {fileID: 21300000, guid: fd098fb4cf57bad419701c802e442b7e, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
+    takeOffCategories: 05000000
   - id: 8
     name: Mid Calf Sock
     customizationCategory: 5
+    itemType: 0
     model: {fileID: 6453212304258339635, guid: e49fea5333f094ac29105ec7b4190bf2, type: 3}
-    sprite: {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
+    uiSprite: {fileID: 21300000, guid: f8c9467a892580344bb697526dac0d13, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
+    takeOffCategories: 05000000
   - id: 9
     name: OverTheKnee
     customizationCategory: 5
+    itemType: 0
     model: {fileID: 925169388274458641, guid: 15396540f91ff400787c0a36b9c4fb30, type: 3}
-    sprite: {fileID: 21300000, guid: df7dbac99fae5444f92b497c52f0ecfb, type: 3}
+    uiSprite: {fileID: 21300000, guid: a6fbd5a181bc51e42a61a73fe8d727c8, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
+    - {fileID: 2800000, guid: d41e3a51c74c48847a8eb97a319afda8, type: 3}
+    - {fileID: 2800000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
+    takeOffCategories: 05000000
   - id: 10
     name: Blouse
     customizationCategory: 1
+    itemType: 0
     model: {fileID: 5926399214782457649, guid: fe8699ffaddc34ba092050e70ae4d4af, type: 3}
-    sprite: {fileID: 21300000, guid: 9aebd705574f9e642aef1e5f59b3e4d8, type: 3}
+    uiSprite: {fileID: 21300000, guid: a3ced8f7044b9de4787602a9e9b20ea7, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
     - {fileID: 2800000, guid: 097485d8528c1482b864d9e1c7c78f13, type: 3}
+    takeOffCategories: 0000000001000000
   - id: 11
     name: Emily Long Sleeve
     customizationCategory: 1
+    itemType: 0
     model: {fileID: 2982942218196728823, guid: 1b288a0a4a4b0480ca537c1fd89e4e38, type: 3}
-    sprite: {fileID: 21300000, guid: 3494dc956dfd7174abc07060940a2848, type: 3}
+    uiSprite: {fileID: 21300000, guid: 9aebd705574f9e642aef1e5f59b3e4d8, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
     - {fileID: 2800000, guid: 097485d8528c1482b864d9e1c7c78f13, type: 3}
+    takeOffCategories: 0000000001000000
   - id: 12
     name: Laura Camp
     customizationCategory: 1
+    itemType: 0
     model: {fileID: 4794921546763917059, guid: 1fe592987704d4ff282297419ca3dca9, type: 3}
-    sprite: {fileID: 21300000, guid: c9ed6d6ea2f9657409bfa068d4846139, type: 3}
+    uiSprite: {fileID: 21300000, guid: 626b9cddb29049e4cac50cd87b419945, type: 3}
     textures:
     - {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}
     - {fileID: 2800000, guid: 097485d8528c1482b864d9e1c7c78f13, type: 3}
+    takeOffCategories: 0000000001000000
   noneTexture: {fileID: 2800000, guid: e54e20c7a9730fe4c822d63228527ae4, type: 3}

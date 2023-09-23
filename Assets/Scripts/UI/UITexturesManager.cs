@@ -10,8 +10,7 @@ public class UITexturesManager : MonoBehaviour
 {
     public GameObject textureUIPrefab;
 
-    public CustomizationData data;
-    public List<ItemTexture> customizationTextures;
+    public List<UIItemTexture> customizationTextures;
 
     private void OnEnable()
     {
@@ -33,8 +32,7 @@ public class UITexturesManager : MonoBehaviour
         EventManager.ItemClicked -= ItemClicked;
     }
 
-    [Button]
-    private void ItemClicked(Customization data)
+    private void ItemClicked(CustomizationItem data)
     {
         foreach (var item in customizationTextures)
         {
@@ -50,38 +48,37 @@ public class UITexturesManager : MonoBehaviour
 
             for (int i = 0; i < data.textures.Count; i++)
             {
-                var cloth = customizationTextures[i];
+                var texture = customizationTextures[i];
 
-                cloth.GetComponent<ItemTexture>().data = data;
-                cloth.GetComponent<ItemTexture>().SetItem(i);
+                texture.GetComponent<UIItemTexture>().itemData = data;
+                texture.GetComponent<UIItemTexture>().SetItem(i);
             }
         }
         else if (data.textures.Count > customizationTextures.Count)
         {
-            Debug.Log("büyük");
 
             for (int i = customizationTextures.Count; i < data.textures.Count; i++)
             {
                 var cloth = PrefabUtility.InstantiatePrefab(textureUIPrefab, transform) as GameObject;
-                customizationTextures.Add(cloth.GetComponent<ItemTexture>());
+                customizationTextures.Add(cloth.GetComponent<UIItemTexture>());
             }
 
             for (int i = 0; i < data.textures.Count; i++)
             {
-                var cloth = customizationTextures[i];
+                var texture = customizationTextures[i];
 
-                cloth.GetComponent<ItemTexture>().data = data;
-                cloth.GetComponent<ItemTexture>().SetItem(i);
+                texture.GetComponent<UIItemTexture>().itemData = data;
+                texture.GetComponent<UIItemTexture>().SetItem(i);
             }
         }
         else
         {
             for (int i = 0; i < data.textures.Count; i++)
             {
-                var cloth = customizationTextures[i];
+                var texture = customizationTextures[i];
 
-                cloth.GetComponent<ItemTexture>().data = data;
-                cloth.GetComponent<ItemTexture>().SetItem(i);
+                texture.GetComponent<UIItemTexture>().itemData = data;
+                texture.GetComponent<UIItemTexture>().SetItem(i);
             }
         }
     }

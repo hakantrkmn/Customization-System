@@ -18,12 +18,17 @@ public enum CustomizationCategories
     FullBody,
     TopBody,
     BottomBody,
-    Accessories,
+    NeckAccessories,
     Shoe,
     Sock,
     OuterBody,
-    
 }
+public enum ItemType
+{
+    Clothing,
+    Accessories,
+}
+
 public enum InGamePanelTypes
 {
     OnlyLevel,

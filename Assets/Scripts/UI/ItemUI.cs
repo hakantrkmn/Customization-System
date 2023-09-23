@@ -3,21 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class Item : MonoBehaviour
+public class ItemUI : MonoBehaviour
 {
     public Image itemImage;
-    public GameObject choosenImage;
+    public GameObject selectedImage;
 
     public TextMeshProUGUI itemName;
 
-    public Customization itemData;
+    public CustomizationItem itemData;
     public void SetItem()
     {
         itemName.text = itemData.name;
-        itemImage.sprite = itemData.sprite;
-        choosenImage.SetActive(EventManager.CheckIfItemUsing(itemData.id));
+        itemImage.sprite = itemData.uiSprite;
+        selectedImage.SetActive(EventManager.CheckIfItemUsing(itemData.id));
     }
 
     private void OnEnable()
@@ -30,18 +31,16 @@ public class Item : MonoBehaviour
         EventManager.ItemClicked -= ItemClicked;
     }
 
-    private void ItemClicked(Customization data)
+    private void ItemClicked(CustomizationItem data)
     {
         if (data!=itemData)
-        {
-            choosenImage.SetActive(false);
-
-        }
+            selectedImage.SetActive(false);
+            
     }
 
     public void ItemClicked()
     {
         EventManager.ItemClicked(itemData);
-        choosenImage.SetActive(true);
+        selectedImage.SetActive(true);
     }
 }

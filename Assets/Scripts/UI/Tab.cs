@@ -11,6 +11,7 @@ public class Tab : MonoBehaviour
     public void SetTab()
     {
         categoryText.text = category.ToString();
+        transform.name = category.ToString();
     }
 
     public void TabButtonClicked()

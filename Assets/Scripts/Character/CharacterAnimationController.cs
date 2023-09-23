@@ -9,16 +9,14 @@ public class CharacterAnimationController : MonoBehaviour
 {
     public Animator animator;
 
-    public float animTime;
+    float _animTime;
 
     [OnValueChanged("Dance")] public Dances dance;
 
-    public CharacterModel model;
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        animTime += Time.deltaTime * .1f;
-        animator.SetFloat("AnimTime", animTime);
+        _animTime += Time.deltaTime * .1f;
+        animator.SetFloat("AnimTime", _animTime);
     }
 
     private void OnEnable()
@@ -40,12 +38,12 @@ public class CharacterAnimationController : MonoBehaviour
 
     private float GetAnimTime()
     {
-        return animTime;
+        return _animTime;
     }
 
-    public void Dance()
+    private void Dance()
     {
-        animTime = 0;
+        _animTime = 0;
 
         switch (dance)
         {
@@ -62,6 +60,9 @@ public class CharacterAnimationController : MonoBehaviour
                break;
         }
 
-        EventManager.DanceStateChanged();
+        if (EventManager.DanceStateChanged!=null)
+        {
+            EventManager.DanceStateChanged();
+        }
     }
 }

@@ -20,10 +20,10 @@ public static class EventManager
 
     public static Action<CustomizationCategories> TabButtonClicked;
 
-    public static Action<Customization> ItemClicked;
+    public static Action<CustomizationItem> ItemClicked;
     public static Func<float> GetAnimTime;
 
-    public static Action<Customization,int> TextureItemClicked;
+    public static Action<CustomizationItem,int> TextureItemClicked;
     public static Action DanceStateChanged;
 
     public static Func<int> GetDanceIndex;

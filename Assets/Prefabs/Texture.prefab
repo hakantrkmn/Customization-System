@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1111280491935005872}
   - component: {fileID: 8841404407273463718}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Texture Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,16 +168,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad950d37b35954825b93a76b6e1ea178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
+  itemData:
     id: 0
     name: 
     customizationCategory: 0
     model: {fileID: 0}
-    sprite: {fileID: 0}
+    uiSprite: {fileID: 0}
     textures: []
+    takeOffCategories: 
   image: {fileID: 8841404407273463718}
   textureId: 0
-  choosenTexture: {fileID: 8620563030995287899}
+  selectedImage: {fileID: 8620563030995287899}
 --- !u!114 &4542192917215137463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +247,7 @@ GameObject:
   - component: {fileID: 5514950468615985302}
   - component: {fileID: 6224890529236229279}
   m_Layer: 5
-  m_Name: Choosen
+  m_Name: Selected Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,7 +271,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 35.9295, y: 32.726}
+  m_SizeDelta: {x: 48.0317, y: 44.1163}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &5514950468615985302
 CanvasRenderer:

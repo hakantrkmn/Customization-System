@@ -12,15 +12,18 @@ public class TabsManager : MonoBehaviour
     public List<Tab> tabs;
 
 
-
     [Button]
     public void CreateTabs()
     {
         foreach (var tab in tabs)
         {
+#if UNITY_EDITOR
             DestroyImmediate(tab.gameObject);
+#else
+            Destroy(tab.gameObject);
+#endif
         }
-        
+
         tabs.Clear();
         var myEnumMemberCount = Enum.GetNames(typeof(CustomizationCategories)).Length;
 
@@ -31,7 +34,5 @@ public class TabsManager : MonoBehaviour
             tabs.Add(tab);
             tab.SetTab();
         }
-        
-        
     }
 }

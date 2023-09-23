@@ -7,7 +7,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class CustomizationData : ScriptableObject
 {
-    public List<Customization> customizationList;
+    public List<CustomizationItem> customizationList;
     public Texture2D noneTexture;
 
     private void OnValidate()
@@ -22,10 +22,7 @@ public class CustomizationData : ScriptableObject
             else 
             {
                 if (customizationList[i].textures[0]!=noneTexture)
-                {
                     customizationList[i].textures.Insert(0,noneTexture);
-
-                }
             }
         }
     }
