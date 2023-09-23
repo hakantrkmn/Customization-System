@@ -16,9 +16,15 @@ public static class EventManager
     public static Func<bool> IsPointerOverUI;
     #endregion
 
-  
 
- 
+
+    public static Action<CustomizationCategories> TabButtonClicked;
+
+    public static Action<Customization> ItemClicked;
+    public static Func<float> GetAnimTime;
+
+    public static Action<Customization,int> TextureItemClicked;
+
 
 
 }

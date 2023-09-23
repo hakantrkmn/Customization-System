@@ -6,7 +6,17 @@
     PauseLevel,
     ResetProgressData,
 }
-
+public enum CustomizationCategories
+{
+    FullBody,
+    TopBody,
+    BottomBody,
+    Accessories,
+    Shoe,
+    Sock,
+    OuterBody,
+    
+}
 public enum InGamePanelTypes
 {
     OnlyLevel,

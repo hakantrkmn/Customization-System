@@ -9,6 +9,24 @@ public struct TutorialPanels
     public GameObject panelGameObject;
 }
 
+[Serializable]
+public class CharacterItem
+{
+    public CustomizationCategories category;
+    public GameObject itemObject;
+    public bool isWearing;
+
+    public int id;
+    public CharacterItem(CustomizationCategories category, GameObject itemObject,int id,bool isWearing)
+    {
+        this.category = category;
+        this.itemObject = itemObject;
+        this.id = id;
+        this.isWearing = isWearing;
+    }
+    
+}
+
 
 #region Incremental Idle
 [Serializable]
