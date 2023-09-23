@@ -2495,6 +2495,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4918342751281082796, guid: 0fe73ab9e6949476dad3a10bfbe4b7f0,
+        type: 3}
+      propertyPath: customizationItems.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918342751281082796, guid: 0fe73ab9e6949476dad3a10bfbe4b7f0,
+        type: 3}
+      propertyPath: customizationItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918342751281082796, guid: 0fe73ab9e6949476dad3a10bfbe4b7f0,
+        type: 3}
+      propertyPath: customizationItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918342751281082796, guid: 0fe73ab9e6949476dad3a10bfbe4b7f0,
+        type: 3}
+      propertyPath: customizationItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5605894835125761818, guid: 0fe73ab9e6949476dad3a10bfbe4b7f0,
         type: 3}
       propertyPath: m_AnchorMax.y

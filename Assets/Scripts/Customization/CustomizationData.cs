@@ -9,6 +9,8 @@ public class CustomizationData : ScriptableObject
 {
     public List<CustomizationItem> customizationList;
     public Texture2D noneTexture;
+    
+    
 
     private void OnValidate()
     {
