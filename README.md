@@ -10,3 +10,5 @@
  CustomizationItems objesindeki UIItemsManager scriptinde category seçilip Invoke butonuna basmak yeterli.
 
  Model prefabında bulunan CharacterAnimationController scripti üzerinden Dance state'i değiştirilirse itemların animasyonlarla uyumu da test edilebilir.
+
+ Oyuna eklenen modele sağ tıklayıp CreateItem diyerekte scriptable objeye eklenebilir. 
