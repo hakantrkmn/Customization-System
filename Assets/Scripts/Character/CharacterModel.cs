@@ -51,7 +51,6 @@ public class CharacterModel : MonoBehaviour
             if (itemData.itemType == ItemType.Clothing)
             {
                 var sc = item.AddComponent<Clothing>();
-                sc.SetAnimation(_animationController.animator);
                 sc.data = itemData;
             }
             else
@@ -110,10 +109,6 @@ public class CharacterModel : MonoBehaviour
             if (it.id == itemData.id)
             {
                 it.itemObject.SetActive(true);
-                if (it.itemObject.GetComponent<Clothing>())
-                {
-                    it.itemObject.GetComponent<Clothing>().Dance();
-                }
 
                 it.isWearing = true;
 

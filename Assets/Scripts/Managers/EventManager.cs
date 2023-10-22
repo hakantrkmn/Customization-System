@@ -29,6 +29,10 @@ public static class EventManager
     public static Func<int> GetDanceIndex;
     public static Func<int,bool> CheckIfItemUsing;
 
+    public static Func<SkinnedMeshRenderer> GetBonesTransform;
+
+    public static Func<string,Transform> GetBoneWithString;
+
     public static Func<int,int> GetCurrentUsingTextureId;
 
 }

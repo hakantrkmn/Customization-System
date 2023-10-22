@@ -9,42 +9,45 @@ public class CharacterAnimationController : MonoBehaviour
 {
     public Animator animator;
 
-    float _animTime;
+    public SkinnedMeshRenderer renderer;
 
     [OnValueChanged("Dance")] public Dances dance;
-
-    private void Update()
-    {
-        _animTime += Time.deltaTime * .1f;
-        animator.SetFloat("AnimTime", _animTime);
-    }
+    
 
     private void OnEnable()
     {
-        EventManager.GetDanceIndex += GetDanceIndex;
-        EventManager.GetAnimTime += GetAnimTime;
+        EventManager.GetBonesTransform += GetBonesTransform;
+        EventManager.GetBoneWithString += GetBoneWithString;
     }
 
-    private int GetDanceIndex()
+    private Transform GetBoneWithString(string boneName)
     {
-        return animator.GetInteger("Dance");
+        foreach (var tr in GetComponentsInChildren<Transform>())
+        {
+            if (tr.name==boneName)
+            {
+                return tr;
+            }
+        }
+
+        return null;
     }
+
+    private SkinnedMeshRenderer GetBonesTransform()
+    {
+        return renderer;
+    }
+
 
     private void OnDisable()
     {
-        EventManager.GetDanceIndex -= GetDanceIndex;
-        EventManager.GetAnimTime -= GetAnimTime;
+        EventManager.GetBoneWithString -= GetBoneWithString;
     }
 
-    private float GetAnimTime()
-    {
-        return _animTime;
-    }
+
 
     private void Dance()
     {
-        _animTime = 0;
-
         switch (dance)
         {
             case Dances.Dance_1:
@@ -59,10 +62,6 @@ public class CharacterAnimationController : MonoBehaviour
 
                break;
         }
-
-        if (EventManager.DanceStateChanged!=null)
-        {
-            EventManager.DanceStateChanged();
-        }
+        
     }
 }

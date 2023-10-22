@@ -1,38 +1,32 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEditor.Animations;
 using UnityEngine;
 
 public class Clothing : Apparel
 {
-    public Animator animator;
-    public void SetAnimation(Animator parentAnimator)
+    public override void Start()
     {
-        animator = gameObject.AddComponent<Animator>();
-        animator.runtimeAnimatorController = parentAnimator.runtimeAnimatorController;
+        base.Start();
+        SetBones();
     }
 
-    protected override void OnEnable()
+    [Button]
+    public void SetBones()
     {
-        base.OnEnable();
-        EventManager.DanceStateChanged += Dance;
-    }
+        var sa = renderer as SkinnedMeshRenderer;
 
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        EventManager.DanceStateChanged -= Dance;
-    }
+        List<Transform> newList = new List<Transform>();
+        foreach (var bone in sa.bones)
+        {
+            var targetBone = EventManager.GetBoneWithString(bone.name);
+            newList.Add(targetBone);
+        }
 
-
-    private void Update()
-    {
-        animator.SetFloat("AnimTime",EventManager.GetAnimTime());
-    }
-    
-    public void Dance()
-    {
-        animator.SetInteger("Dance",EventManager.GetDanceIndex());
+        sa.bones = newList.ToArray();
+        
+        sa.rootBone = EventManager.GetBonesTransform().rootBone;
     }
 }

@@ -8,9 +8,10 @@ public abstract class Apparel : MonoBehaviour
     public CustomizationItem data;
     public Renderer renderer;
 
-    void Start()
+    public virtual void Start()
     {
         renderer = GetComponentInChildren<Renderer>();
+       
     }
 
     protected virtual void OnEnable()
