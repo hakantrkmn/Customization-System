@@ -45,22 +45,20 @@ public class CharacterModel : MonoBehaviour
         items.Clear();
         foreach (var itemData in data.customizationList)
         {
+            if (itemData.itemType==ItemType.Accessories)
+            {
+                
             var item = PrefabUtility.InstantiatePrefab(itemData.model, transform) as GameObject;
-            item.transform.SetParent(_bodyParts.First(x => x.category == itemData.customizationCategory).transform);
+            item.transform.SetParent(_bodyParts.First(x => x.category.Contains(itemData.customizationCategory)).transform);
             CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item, itemData.id, false, 0);
-            if (itemData.itemType == ItemType.Clothing)
-            {
-                var sc = item.AddComponent<Clothing>();
+            var sc = item.AddComponent<Accessorie>();
                 sc.data = itemData;
-            }
-            else
-            {
-                var sc = item.AddComponent<Accessorie>();
-                sc.data = itemData;
-            }
+            
 
             item.SetActive(false);
             items.Add(chItem);
+            }
+
         }
     }
 
@@ -74,7 +72,16 @@ public class CharacterModel : MonoBehaviour
 
     private int GetCurrentUsingTextureId(int id)
     {
-        return items.First(x => x.id == id).currentTextureIndex;
+        foreach (var it in items)
+        {
+            if (it.id==id)
+            {
+                return it.currentTextureIndex;
+
+            }
+        }
+
+        return 0;
     }
 
     private void TextureItemClicked(CustomizationItem itemData, int index)
@@ -84,7 +91,16 @@ public class CharacterModel : MonoBehaviour
 
     private bool CheckIfItemUsing(int id)
     {
-        return items.First(x => x.id == id).isWearing;
+        foreach (var it in items)
+        {
+            if (it.id==id)
+            {
+                return it.isWearing;
+
+            }
+        }
+
+        return false;
     }
 
     private void OnDisable()
@@ -104,16 +120,49 @@ public class CharacterModel : MonoBehaviour
             }
         }
 
-        foreach (var it in items)
+        if (itemData.itemType==ItemType.Clothing)
         {
-            if (it.id == itemData.id)
-            {
-                it.itemObject.SetActive(true);
+                foreach (var it in items)
+                {
+                    if (it.id == itemData.id)
+                    {
+                        it.itemObject.SetActive(true);
 
-                it.isWearing = true;
+                        it.isWearing = true;
+
+                        return;
+                    }
+                }
+         
+                var item = PrefabUtility.InstantiatePrefab(itemData.model, transform) as GameObject;
+                item.transform.SetParent(_bodyParts.First(x => x.category.Contains(itemData.customizationCategory)).transform);
+                CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item, itemData.id, false, 0);
+                var sc = item.AddComponent<Clothing>();
+                    sc.data = itemData;
+
+                    item.SetActive(false);
+                items.Add(chItem);
+                chItem.itemObject.SetActive(true);
+
+                chItem.isWearing = true;
 
                 return;
+        }
+        else
+        {
+            foreach (var it in items)
+            {
+                if (it.id == itemData.id)
+                {
+                    it.itemObject.SetActive(true);
+
+                    it.isWearing = true;
+
+                    return;
+                }
             }
         }
+        
+        
     }
 }

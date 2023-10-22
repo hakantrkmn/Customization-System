@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class CharacterBodyPart : MonoBehaviour
 {
-    public CustomizationCategories category;
+    public List<CustomizationCategories> category;
 }
