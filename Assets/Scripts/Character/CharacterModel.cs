@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class CharacterModel : MonoBehaviour
 {
+    
     public List<CharacterItem> items;
     public CustomizationData data;
     List<CharacterBodyPart> _bodyParts;
@@ -17,12 +19,13 @@ public class CharacterModel : MonoBehaviour
 
     private void Start()
     {
-        SetCustomizationItems();
+        Debug.Log("hakannn");
+        //SetCustomizationItems();
     }
 
 
     [Button]
-    public void SetCustomizationItems()
+    public  async void  SetCustomizationItems()
     {
         _bodyParts = new List<CharacterBodyPart>();
         _animationController = GetComponent<CharacterAnimationController>();
@@ -47,19 +50,29 @@ public class CharacterModel : MonoBehaviour
         {
             if (itemData.itemType==ItemType.Accessories)
             {
-                
-            var item = PrefabUtility.InstantiatePrefab(itemData.model, transform) as GameObject;
-            item.transform.SetParent(_bodyParts.First(x => x.category.Contains(itemData.customizationCategory)).transform);
-            CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item, itemData.id, false, 0);
-            var sc = item.AddComponent<Accessorie>();
-                sc.data = itemData;
-            
 
-            item.SetActive(false);
-            items.Add(chItem);
+                itemData.model.LoadAssetAsync().Completed += OnAdressableLoaded;
             }
 
         }
+    }
+    
+
+    void OnAdressableLoaded(AsyncOperationHandle<GameObject> handle)
+    {
+        if (handle.Status==AsyncOperationStatus.Succeeded)
+        {
+            var item = PrefabUtility.InstantiatePrefab(handle.Result, transform) as GameObject;
+            var itemData = data.customizationList.First(x => x.model.Asset == handle.Result);
+            item.transform.SetParent(_bodyParts.First(x => x.category.Contains(itemData.customizationCategory)).transform);
+            CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item, itemData.id, false, 0);
+            var sc = item.AddComponent<Accessorie>();
+            sc.data = itemData;
+            
+            item.SetActive(false);
+            items.Add(chItem);
+        }
+        
     }
 
     private void OnEnable()
@@ -133,7 +146,7 @@ public class CharacterModel : MonoBehaviour
                         return;
                     }
                 }
-         
+         /*
                 var item = PrefabUtility.InstantiatePrefab(itemData.model, transform) as GameObject;
                 item.transform.SetParent(_bodyParts.First(x => x.category.Contains(itemData.customizationCategory)).transform);
                 CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item, itemData.id, false, 0);
@@ -147,6 +160,7 @@ public class CharacterModel : MonoBehaviour
                 chItem.isWearing = true;
 
                 return;
+                */
         }
         else
         {

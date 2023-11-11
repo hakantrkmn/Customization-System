@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Serialization;
 
 [Serializable]
@@ -13,7 +14,7 @@ public class CustomizationItem
     public string name;
     public CustomizationCategories customizationCategory;
     public ItemType itemType;
-    public GameObject model;
+    public AssetReferenceGameObject model;
     public Sprite uiSprite;
     [PreviewField]
     public List<Texture2D> textures;
