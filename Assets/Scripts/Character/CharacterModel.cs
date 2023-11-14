@@ -6,26 +6,25 @@ using System.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class CharacterModel : MonoBehaviour
 {
-    
+
     public List<CharacterItem> items;
     public CustomizationData data;
     List<CharacterBodyPart> _bodyParts;
     CharacterAnimationController _animationController;
 
 
-    private void Start()
+
+    void Start()
     {
-        Debug.Log("hakannn");
-        //SetCustomizationItems();
+        SetCustomizationItems();
     }
-
-
     [Button]
-    public  async void  SetCustomizationItems()
+    public void SetCustomizationItems()
     {
         _bodyParts = new List<CharacterBodyPart>();
         _animationController = GetComponent<CharacterAnimationController>();
@@ -48,7 +47,7 @@ public class CharacterModel : MonoBehaviour
         items.Clear();
         foreach (var itemData in data.customizationList)
         {
-            if (itemData.itemType==ItemType.Accessories)
+            if (itemData.itemType == ItemType.Accessories)
             {
 
                 itemData.model.LoadAssetAsync().Completed += OnAdressableLoaded;
@@ -56,11 +55,11 @@ public class CharacterModel : MonoBehaviour
 
         }
     }
-    
+
 
     void OnAdressableLoaded(AsyncOperationHandle<GameObject> handle)
     {
-        if (handle.Status==AsyncOperationStatus.Succeeded)
+        if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             var item = PrefabUtility.InstantiatePrefab(handle.Result, transform) as GameObject;
             var itemData = data.customizationList.First(x => x.model.Asset == handle.Result);
@@ -68,11 +67,11 @@ public class CharacterModel : MonoBehaviour
             CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item, itemData.id, false, 0);
             var sc = item.AddComponent<Accessorie>();
             sc.data = itemData;
-            
+
             item.SetActive(false);
             items.Add(chItem);
         }
-        
+
     }
 
     private void OnEnable()
@@ -87,7 +86,7 @@ public class CharacterModel : MonoBehaviour
     {
         foreach (var it in items)
         {
-            if (it.id==id)
+            if (it.id == id)
             {
                 return it.currentTextureIndex;
 
@@ -106,7 +105,7 @@ public class CharacterModel : MonoBehaviour
     {
         foreach (var it in items)
         {
-            if (it.id==id)
+            if (it.id == id)
             {
                 return it.isWearing;
 
@@ -122,7 +121,7 @@ public class CharacterModel : MonoBehaviour
         EventManager.ItemClicked -= ItemClicked;
     }
 
-    private void ItemClicked(CustomizationItem itemData)
+    private async void ItemClicked(CustomizationItem itemData)
     {
         foreach (var item in items)
         {
@@ -133,34 +132,44 @@ public class CharacterModel : MonoBehaviour
             }
         }
 
-        if (itemData.itemType==ItemType.Clothing)
+        if (itemData.itemType == ItemType.Clothing)
         {
-                foreach (var it in items)
+            foreach (var it in items)
+            {
+                if (it.id == itemData.id)
                 {
-                    if (it.id == itemData.id)
-                    {
-                        it.itemObject.SetActive(true);
+                    it.itemObject.SetActive(true);
 
-                        it.isWearing = true;
+                    it.isWearing = true;
 
-                        return;
-                    }
+                    return;
                 }
-         /*
-                var item = PrefabUtility.InstantiatePrefab(itemData.model, transform) as GameObject;
-                item.transform.SetParent(_bodyParts.First(x => x.category.Contains(itemData.customizationCategory)).transform);
-                CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item, itemData.id, false, 0);
-                var sc = item.AddComponent<Clothing>();
-                    sc.data = itemData;
+            }
 
-                    item.SetActive(false);
-                items.Add(chItem);
-                chItem.itemObject.SetActive(true);
+            AsyncOperationHandle<GameObject> handle = itemData.model.LoadAssetAsync<GameObject>();
 
-                chItem.isWearing = true;
+            // Bekleyin
+            await handle.Task;
 
-                return;
-                */
+            // Instantiate edin
+            GameObject item = Instantiate(handle.Result, transform.position, transform.rotation);
+
+            // AssetReference'ı serbest bırakın
+            Debug.Log(_bodyParts.Count);
+            item.transform.SetParent(_bodyParts.First(x => x.category.Contains(itemData.customizationCategory)).transform);
+            CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item, itemData.id, false, 0);
+            var sc = item.AddComponent<Clothing>();
+            sc.data = itemData;
+
+            item.SetActive(false);
+            items.Add(chItem);
+            chItem.itemObject.SetActive(true);
+
+            chItem.isWearing = true;
+            Addressables.Release(handle);
+
+            return;
+
         }
         else
         {
@@ -176,7 +185,7 @@ public class CharacterModel : MonoBehaviour
                 }
             }
         }
-        
-        
+
+
     }
 }

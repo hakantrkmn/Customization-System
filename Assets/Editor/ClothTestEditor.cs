@@ -3,14 +3,16 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using Unity.Mathematics;
 
-public class CustomSceneMenu
+public class ClothTestEditor
 {
     private static List<string> fbxFiles;
+    public static List<GameObject> createdObjects = new List<GameObject>();
     private static Vector2 scrollPosition = Vector2.zero;
 
-    [MenuItem("GameObject/Custom Scene Menu", false, 10)]
-    private static void CreateCustomSceneMenu()
+    [MenuItem("Cloth/Cloth Test Menu", false, 10)]
+    private static void CreateClothTestMenu()
     {
         SceneView.duringSceneGui += DuringSceneGUI;
     }
@@ -22,8 +24,8 @@ public class CustomSceneMenu
         Handles.BeginGUI();
 
         GUILayout.BeginArea(new Rect(10, 10, 150, 450));
-        GUILayout.Label("Custom Scene Menu");
-        fbxFiles = GetFBXFiles("Assets/_game/Models");
+        GUILayout.Label("Cloth Test Menu");
+        fbxFiles = GetFBXFiles("Assets/_game/Prefabs");
 
         // Draw buttons for each FBX file when FBX Files menu is opened
         if (fbxFiles != null)
@@ -77,7 +79,20 @@ public class CustomSceneMenu
         GameObject instantiatedModel = PrefabUtility.InstantiatePrefab(fbxModel) as GameObject;
         if (instantiatedModel != null)
         {
+            var model = GameObject.FindObjectOfType<CharacterModel>().transform;
+            instantiatedModel.transform.SetParent(model);
+            instantiatedModel.transform.SetLocalPositionAndRotation(Vector3.zero, quaternion.identity);
             Debug.Log("FBX model instantiated: " + fbxModel.name);
+            foreach (var item in createdObjects)
+            {
+                if (item!=null)
+                {
+                Undo.DestroyObjectImmediate(item);
+        
+                }
+            }
+            createdObjects.Clear();
+            createdObjects.Add(instantiatedModel);
         }
         else
         {
@@ -91,7 +106,7 @@ public class CustomSceneMenu
 
         if (Directory.Exists(folderPath))
         {
-            files.AddRange(Directory.GetFiles(folderPath, "*.fbx"));
+            files.AddRange(Directory.GetFiles(folderPath, "*.prefab"));
         }
         else
         {
