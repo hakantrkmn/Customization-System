@@ -155,7 +155,6 @@ public class CharacterModel : MonoBehaviour
             GameObject item = Instantiate(handle.Result, transform.position, transform.rotation);
 
             // AssetReference'ı serbest bırakın
-            Debug.Log(_bodyParts.Count);
             item.transform.SetParent(_bodyParts.First(x => x.category.Contains(itemData.customizationCategory)).transform);
             CharacterItem chItem = new CharacterItem(itemData.customizationCategory, item, itemData.id, false, 0);
             var sc = item.AddComponent<Clothing>();

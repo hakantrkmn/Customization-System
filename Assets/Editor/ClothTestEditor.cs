@@ -5,25 +5,24 @@ using System.Collections.Generic;
 using System.IO;
 using Unity.Mathematics;
 
-public class ClothTestEditor
+public class ClothTestEditor : EditorWindow
 {
     private static List<string> fbxFiles;
     public static List<GameObject> createdObjects = new List<GameObject>();
-    private static Vector2 scrollPosition = Vector2.zero;
 
     [MenuItem("Cloth/Cloth Test Menu", false, 10)]
     private static void CreateClothTestMenu()
     {
         SceneView.duringSceneGui += DuringSceneGUI;
     }
-
     
+
 
     private static void DuringSceneGUI(SceneView sceneView)
     {
         Handles.BeginGUI();
 
-        GUILayout.BeginArea(new Rect(10, 10, 150, 450));
+        GUILayout.BeginArea(new Rect(Screen.width-300, 1, 300, 900));
         GUILayout.Label("Cloth Test Menu");
         fbxFiles = GetFBXFiles("Assets/_game/Prefabs");
 
@@ -41,7 +40,7 @@ public class ClothTestEditor
     private static void DrawFBXButtons()
     {
         // Create a scrollable area for the buttons
-        scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Width(150), GUILayout.Height(100));
+        GUILayout.BeginScrollView(Vector2.zero, GUILayout.Width(300), GUILayout.Height(600));
 
         // Draw buttons for each FBX file
         foreach (string filePath in fbxFiles)
