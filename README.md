@@ -12,3 +12,11 @@
  Model prefabında bulunan CharacterAnimationController scripti üzerinden Dance state'i değiştirilirse itemların animasyonlarla uyumu da test edilebilir.
 
  Oyuna eklenen modele sağ tıklayıp CreateItem diyerekte scriptable objeye eklenebilir. 
+
+ editor tool ekledim. _game>Prefabs klasörünün içindeki prefabları oyunu başlatmadan deneme şansı tanıyor. üst menüden cloth sekmesinden cloth test menuye tıklandığında
+ scene ekranında menu açılıyor. bu klasorde bulunan prefablar menude gözüküyor. tıklandığında sahnedeki modelin üstünde oluşuyor. modelleme ve modeli karakter üzerinde
+ görme aşaması için yararlı olacağını düşündüm.
+
+ önceden her objede animator oluşuyordu. şuan objelerin skinned mesh rendererdaki bonelarını tekrar atayarak optimize ettim. sahnede tek animator var ve objeler bundan kemik bilgilerini çekip ona göre hareket ediyor.
+
+ optimizasyon için adressable ekledim. 
